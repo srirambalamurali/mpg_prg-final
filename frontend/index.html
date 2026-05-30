@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto MPG Intelligence Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <div class="backdrop"></div>
+  <main class="dashboard">
+    <section class="hero panel">
+      <div class="eyebrow">Auto MPG ML Platform</div>
+      <h1>Predict fuel efficiency with a production-ready automotive dashboard.</h1>
+      <p>
+        Enter vehicle specifications and the FastAPI model will estimate MPG using the trained
+        Auto MPG pipeline.
+      </p>
+      <div class="hero-stats">
+        <article>
+          <span>Model</span>
+          <strong>Random Forest</strong>
+        </article>
+        <article>
+          <span>Deployment</span>
+          <strong>Vercel Ready</strong>
+        </article>
+        <article>
+          <span>API</span>
+          <strong>/api/predict</strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <form id="prediction-form" class="panel form-card">
+        <div class="panel-header">
+          <h2>Vehicle Input</h2>
+          <p>Use the first word of the vehicle name as the brand token.</p>
+        </div>
+
+        <div class="grid two-col">
+          <label>
+            Vehicle name
+            <input name="car_name" type="text" value="ford torino" placeholder="ford torino" required>
+          </label>
+          <label>
+            Cylinders
+            <input name="cylinders" type="number" min="3" max="12" value="8" required>
+          </label>
+          <label>
+            Displacement
+            <input name="displacement" type="number" min="0" step="0.1" value="307" required>
+          </label>
+          <label>
+            Horsepower
+            <input name="horsepower" type="number" min="0" step="0.1" value="130" required>
+          </label>
+          <label>
+            Weight
+            <input name="weight" type="number" min="0" step="1" value="3504" required>
+          </label>
+          <label>
+            Acceleration
+            <input name="acceleration" type="number" min="0" step="0.1" value="12" required>
+          </label>
+          <label>
+            Model year
+            <input name="model_year" type="number" min="0" max="99" value="70" required>
+          </label>
+          <label>
+            Origin
+            <select name="origin" required>
+              <option value="1">USA</option>
+              <option value="2">Europe</option>
+              <option value="3">Japan</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="primary">Predict MPG</button>
+          <button type="reset" class="secondary">Reset</button>
+        </div>
+      </form>
+
+      <section class="results panel">
+        <div class="panel-header">
+          <h2>Prediction Output</h2>
+          <p>Real-time estimate from the FastAPI model.</p>
+        </div>
+
+        <div class="mpg-card">
+          <span class="label">Estimated MPG</span>
+          <div id="mpg-value" class="mpg-value">--</div>
+          <p id="efficiency-band" class="band">Awaiting prediction</p>
+        </div>
+
+        <div class="metrics">
+          <article>
+            <span>Horsepower / Weight</span>
+            <strong id="hp-weight">--</strong>
+          </article>
+          <article>
+            <span>Weight / HP</span>
+            <strong id="weight-hp">--</strong>
+          </article>
+          <article>
+            <span>Brand token</span>
+            <strong id="brand-token">--</strong>
+          </article>
+        </div>
+
+        <div class="vehicle-tape">
+          <div>
+            <span>Performance Bias</span>
+            <strong id="performance-bias">Classic cruiser profile</strong>
+          </div>
+          <div>
+            <span>Origin profile</span>
+            <strong id="origin-profile">Domestic baseline</strong>
+          </div>
+        </div>
+
+        <p id="status-message" class="status">Submit the form to generate an MPG prediction.</p>
+      </section>
+    </section>
+  </main>
+</body>
+</html>
